@@ -1,0 +1,51 @@
+extends layout
+
+append stylesheets
+  link(rel='stylesheet', href='/stylesheets/giris.css')
+
+block content
+    .pen-title
+    .container
+      .card
+      .card
+        h1.title Giris Yap
+        .input-container
+          input(type='text', required, id="kadi")
+          label Kullanici Adi
+          .bar
+        .input-container
+          input(type='text', required, id="sifre")
+          label Sifre
+          .bar
+        .button-container
+          button(id="girisbtn")
+            span Giris
+        .footer
+          a(href='/auth/google') Google+
+      .card.alt
+        .toggle
+          i.fas.fa-user-plus
+
+        h1.title
+          | Kayit Ol
+          .close
+        .input-container
+          input(type='text', required , id="kkadi")
+          label Kullanici olustur
+          .bar
+        .input-container
+          input(type='text', required, id="ksifre")
+          label Sifre olustur
+          .bar
+        .button-container
+          button(id="kayitbtn")
+            span Kayit
+        br
+        .footer
+
+
+append javascripts
+  script(src="/jquery/dist/jquery.min.js")
+  script(src="/javascripts/giris.js")
+
+
