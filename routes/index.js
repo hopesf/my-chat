@@ -13,23 +13,32 @@ router.get('/', function(req, res) {
 router.post('/kayit', (req, res) =>{
   const {kadi,sifre} = req.body;
 
-  bcrypt.hash(sifre,10).then( (hash) =>{
-    const x = new User({
-      kadi,
-      sifre:hash
-    });
-    x.save((err,data) =>{
-      if(err)
-        res.json({
-          status: false,
-          message: 'Kullanici Olusamadi'
-        });
+  User.findOne({ kadi: req.body.kadi }, function(err, user) {
+    if (user) {
       res.json({
         status: false,
-        message: 'Kullanici Basariyla Olustu'
+        message: 'Bu kullanici zaten kayitli'
       });
-    });
+    } else {
+      bcrypt.hash(sifre,10).then( (hash) =>{
+        const x = new User({
+          kadi,
+          sifre:hash
+        });
+        x.save((err,data) =>{
+          if(err)
+            res.json({
+              status: false,
+              message: 'Kullanici Olusamadi'
+            });
+          res.json({
+            status: false,
+            message: 'Kullanici Basariyla Olustu'
+          });
+        });
 
+      });
+    }
   });
 });
 
