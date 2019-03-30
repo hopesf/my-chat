@@ -7,32 +7,29 @@ const bcrypt = require('bcrypt');
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  res.render('giris.pug');
+  res.render('index.pug');
 });
 
 router.post('/kayit', (req, res) =>{
   const {kadi,sifre} = req.body;
 
   bcrypt.hash(sifre,10).then( (hash) =>{
-    const user = new User({
+    const x = new User({
       kadi,
       sifre:hash
     });
-
-    user.save((err,data) =>{
-      if(err){
+    x.save((err,data) =>{
+      if(err)
         res.json({
           status: false,
-          message: 'Kullanici veritabanina Eklenemedi!'
+          message: 'Kullanici Olusamadi'
         });
-      }
-      if(data){
-        res.json({
-          status: false,
-          message: 'Kullanici Basariyla olustu!'
-        });
-      }
+      res.json({
+        status: false,
+        message: 'Kullanici Basariyla Olustu'
+      });
     });
+
   });
 });
 

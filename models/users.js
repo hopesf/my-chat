@@ -1,7 +1,12 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const findorcreate = require('mongoose-find-or-create');
 
 const userSchema = new Schema({
+    id:{
+        type: String,
+        unique: true
+    },
     kadi: {
         type:String,
         required:true,
@@ -12,5 +17,6 @@ const userSchema = new Schema({
         required:true
     }
 });
+userSchema.plugin(findorcreate);
 
 module.exports = mongoose.model('users',userSchema);
