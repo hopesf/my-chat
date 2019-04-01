@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 const findorcreate = require('mongoose-find-or-create');
 
 const userSchema = new Schema({
-    id:{
+    kayitid:{
         type: String,
         unique: true
     },

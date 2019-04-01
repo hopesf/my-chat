@@ -4,6 +4,8 @@ const router = express.Router();
 const User = require("../models/users");
 const bcrypt = require('bcrypt');
 
+const short = require('short-uuid');
+const kisaid = short.generate();
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -15,17 +17,23 @@ router.post('/kayit', (req, res) =>{
 
   User.findOne({ kadi: req.body.kadi }, function(err, user) {
     if (user) {
+
       res.json({
         status: false,
         message: 'Bu kullanici zaten kayitli'
       });
-    } else {
+
+    }
+    else{
       bcrypt.hash(sifre,10).then( (hash) =>{
-        const x = new User({
+
+        const kaydet = new User({
+          kayitid:kisaid,
           kadi,
           sifre:hash
         });
-        x.save((err,data) =>{
+
+        kaydet.save((err,data) =>{
           if(err)
             res.json({
               status: false,
@@ -37,6 +45,7 @@ router.post('/kayit', (req, res) =>{
           });
         });
 
+        next();
       });
     }
   });
