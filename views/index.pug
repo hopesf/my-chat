@@ -4,6 +4,7 @@ append stylesheets
   link(rel='stylesheet', href='/stylesheets/giris.css')
 
 block content
+  div(ng-controller="girisController")
     .pen-title
     .container
       .card
@@ -46,6 +47,7 @@ block content
 
 append javascripts
   script(src="/jquery/dist/jquery.min.js")
-  script(src="/javascripts/giris.js")
+  script(src="/javascripts/views/giris.js")
+  script(src="/javascripts/controller/girisController.js")
 
 

@@ -4,7 +4,10 @@ html
     block stylesheets
       link(rel='stylesheet', href='/font-awesome/css/all.min.css')
   body
+    div(ng-app="chats", ng-cloak)
       block content
 
   block javascripts
     script(src='/angular/angular.min.js')
+    script(src='/javascripts/angular.js')
+

@@ -3,20 +3,15 @@ const Schema = mongoose.Schema;
 const findorcreate = require('mongoose-find-or-create');
 
 const userSchema = new Schema({
-    kayitid:{
+    googleId: {
         type: String,
         unique: true
     },
-    kadi: {
-        type:String,
-        required:true,
-        unique:true
-    },
-    sifre: {
-        type:String,
-        required:true
-    }
+    name: String,
+    surname: String,
+    profilePhotoUrl: String
 });
+
 userSchema.plugin(findorcreate);
 
-module.exports = mongoose.model('users',userSchema);
+module.exports = mongoose.model('users', userSchema);

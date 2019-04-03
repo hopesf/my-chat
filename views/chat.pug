@@ -1,0 +1,57 @@
+extends layout
+
+append stylesheets
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600', rel='stylesheet')
+    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css')
+    link(rel='stylesheet', href='/stylesheets/chat.css')
+
+
+block content
+    div(ng-controller="ChatController")
+        .wrapper
+            .container
+                .left
+                    .top
+                        input(type='text', placeholder='Kullanici Ara...')
+                        a(href='javascript:;')
+                            i#ara.fa.fa-search
+                    ul.people
+                        li.person(ng-repeat= 'user in onlineList')
+                            img(ng-src="{{ user.meta.profilePhotoUrl }}")
+                            span.name {{ user.meta.name }}  {{ user.meta.surname }}
+                            span.time 2:09 PM
+                            span.preview Komutan Logarmi onun ben amk
+                .right
+                    .top
+                        span
+                            | To:
+                            span.name Dog Woofson
+                    .chat
+                        .conversation-start
+                            span Today, 5:38 PM
+                        .bubble.you
+                            | Hello, can you hear me?
+                        .bubble.you
+                            | I'm in California dreaming
+                        .bubble.me
+                            | ... about who we used to be.
+                        .bubble.me
+                            | Are you serious?
+                        .bubble.you
+                            | When we were younger and free...
+                        .bubble.you
+                            | I've forgotten how it felt before
+                    .write
+                        a.write-link.attach(href='javascript:;')
+                        input(type='text')
+                        a.write-link.smiley(href='javascript:;')
+                        a.write-link.send(href='javascript:;')
+
+
+append javascripts
+    script(src="/socket.io/socket.io.js")
+    script(src="/javascripts/services/userFactory.js")
+    script(src="/javascripts/controller/ChatController.js")
+
+

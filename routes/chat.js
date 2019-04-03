@@ -3,11 +3,7 @@ const router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  res.render('index.pug');
-});
-
-router.get('/getUser', (req, res, next) =>{
-  res.json(req.user);
+  res.render('chat.pug',{user: req.user});
 });
 
 module.exports = router;
