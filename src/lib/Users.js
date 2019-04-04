@@ -8,7 +8,7 @@ module.exports = new Users();
 
 Users.prototype.upsert = function (connectionId, meta) {
     this.client.hset(
-        'online',
+        'kullanicilar',
         meta._id,
         JSON.stringify({
             connectionId,
@@ -25,7 +25,7 @@ Users.prototype.upsert = function (connectionId, meta) {
 
 Users.prototype.remove = function (_id) {
     this.client.hdel(
-        'online',
+        'kullanicilar',
         _id,
         err => {
             if (err) {
@@ -38,7 +38,7 @@ Users.prototype.remove = function (_id) {
 Users.prototype.list = function (callback) {
     let active = [];
 
-    this.client.hgetall('online', function (err, users) {
+    this.client.hgetall('kullanicilar', function (err, users) {
         if (err) {
             console.error(err);
             return callback([]);

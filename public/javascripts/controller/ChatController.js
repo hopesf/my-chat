@@ -15,8 +15,10 @@ app.controller('ChatController', ['$scope', 'userFactory', ($scope, userFactory)
     /**
      * Angular variables
      */
+    $scope.chatClicked = false;
     $scope.onlineList = [];
     $scope.user = {};
+
     /**
      * Socket.io event handling.
      */
