@@ -40,7 +40,6 @@ app.controller('ChatController', ['$scope', 'userFactory', ($scope, userFactory)
         $scope.chatName = user.meta.name;
         $scope.aliciId =  user.meta._id;
         $scope.chatClicked = true;
-        console.log(user);
     };
 
     $scope.newMessage = () =>{
