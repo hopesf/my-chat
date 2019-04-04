@@ -8,6 +8,7 @@ const socketApi = {
 
 // libs
 const Users = require('./lib/Users');
+const Messages = require('./lib/Messages');
 
 // Socket authorization
 io.use(socketAuthorization);
@@ -29,6 +30,14 @@ io.on('connection', socket => {
         io.emit('onlineList', users);
     });
 
+    socket.on('newMessage', data => {
+        const messageData = {
+            ...data,
+            userId: socket.request.user._id,
+            username: socket.request.user.name
+        };
+        Messages.upsert(messageData);
+    });
 
 
     socket.on('disconnect', () => {

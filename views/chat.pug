@@ -18,7 +18,7 @@ block content
                         a(href='javascript:;')
                             i#ara.fa.fa-search
                     ul.people
-                        li.person(ng-repeat= 'user in onlineList')
+                        li.person(ng-repeat= 'user in onlineList', ng-click='switchUser(user)')
                             img(ng-src="{{ user.meta.profilePhotoUrl }}")
                             span.name {{ user.meta.name }}  {{ user.meta.surname }}
                             span.time 2:09 PM
@@ -27,7 +27,7 @@ block content
                     .top
                         span
                             | To:
-                            span.name Dog Woofson
+                            span.name  {{ chatName }}
                     .chat
                         .conversation-start
                             span Today, 5:38 PM
@@ -44,10 +44,11 @@ block content
                         .bubble.you
                             | I've forgotten how it felt before
                     .write
-                        a.write-link.attach(href='javascript:;')
-                        input(type='text')
-                        a.write-link.smiley(href='javascript:;')
-                        a.write-link.send(href='javascript:;')
+                        form(ng-submit="newMessage()")
+                            a.write-link.attach(href='javascript:;')
+                            input(type='text' ng-model="message")
+                            a.write-link.smiley(href='javascript:;')
+                            a.write-link.send(href='javascript:;', ng-click="newMessage()")
 
 
 append javascripts
